@@ -1,14 +1,5 @@
-function detectPair(sum, array) {
-    for (i=0; i<array.length; i++) {
-      for (j=0; j<array.length; j++) {
-        if (i == j) continue;
-        else if (array[i] + array[j] === sum) return [array[i], array[j]];
-      }
-    }; return null;
-  }
   
 const sum = 2020;
-
 const array = [
 408,
 1614,
@@ -212,4 +203,45 @@ const array = [
 1224,
 ];
 
-console.log(detectPair(sum, array)); //return would be [12,16]
+const detectPair = (sum, array) => {
+    for (i=0; i<array.length; i++) {
+      for (j=0; j<array.length; j++) {
+        if (i == j) continue;
+        else if (array[i] + array[j] === sum) return [array[i], array[j]];
+      }
+    }; return null;
+};
+
+const correctPair = detectPair(sum, array);
+const resultOfTwo = correctPair[0] * correctPair[1];
+
+console.log("Result part 1: ", resultOfTwo);
+
+
+const detectTriplet = (nums, sum) => {
+  nums = nums.sort(function (a, b) {
+    return a - b;
+  });
+
+  for (let i = 0; i < nums.length; i++) {
+    if (i > 0 && nums[i] === nums[i-1]) continue;  
+
+    for (let j = i + 1; j < nums.length; j++) {
+      if ( j > i + 1 && nums[j] === nums[j-1]) continue;
+
+      for (let k = j + 1; k < nums.length; k++) {
+        if (k > j + 1 && nums[k] === nums[k - 1]) continue;
+
+        if ((nums[i] + nums[j] + nums[k]) === sum) {
+          return [nums[i], nums[j], nums[k]];
+          
+        }
+      }
+    }
+  }
+}
+
+const threeNums = detectTriplet(array, sum);
+const resultOfThree = threeNums[0] * threeNums[1] * threeNums[2];
+
+console.log("Result part 2: ", resultOfThree);
