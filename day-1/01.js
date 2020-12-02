@@ -204,8 +204,8 @@ const array = [
 ];
 
 const detectPair = (sum, array) => {
-    for (i=0; i<array.length; i++) {
-      for (j=0; j<array.length; j++) {
+    for (let i=0; i<array.length; i++) {
+      for (let j=0; j<array.length; j++) {
         if (i == j) continue;
         else if (array[i] + array[j] === sum) return [array[i], array[j]];
       }
